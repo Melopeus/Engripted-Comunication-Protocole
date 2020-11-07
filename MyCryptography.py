@@ -29,6 +29,8 @@ class ECB:
     
     @staticmethod
     def pad(b_text):
+        if len(b_text)%16 == 0:
+            return b_text
         padLen = 16-len(b_text)%16
         padBytes = (' '*padLen).encode('utf-8')
         b_text += padBytes
@@ -84,6 +86,8 @@ class CFB:
 
     @staticmethod
     def pad(b_text):
+        if len(b_text)%16 == 0:
+            return b_text
         padLen = 16-len(b_text)%16
         padBytes = (' '*padLen).encode('utf-8')
         b_text += padBytes

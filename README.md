@@ -85,3 +85,5 @@ Clientii fac urmatoarele lucruri:
 >* Cere modul ales de server pana cand il primesc impreuna cu restul informatiilor necesare(cheia, vector initializare, rol)
 >* Incepe comunicarea clientilor unul cu altul prin socket
 >* Comunica cu serverul la fiecare 8 blocuri scrise/citire si asteapta semnalui de coordonare a serverului
+
+
