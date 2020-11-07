@@ -50,6 +50,14 @@ These modes are initialized and used when the program sends messages via sockets
 
 ### Communication
 The communication happens via sockets. It mostly follows a client-server model. I think the best way to explain the flow of the communication is by commenting the code itself so there are comments that guide and explain what happens. For the KM the process starts at line 195 `if __name__ == "__main__":`
+Requests between client/server follow this form:
+```py
+request = Request({
+    "code": int,
+    "data": dict
+}, cipher, iv)
+```
+`cipher` and `iv` are used to determine the encryption mode
 
 The flow of the app goes like this:
 > Server: 
@@ -74,4 +82,4 @@ The clients have a much easier flow, they follow these steps:
 >* Specify their preferred mode
 >* Ask for the mode until they receive it and the rest of the information like keys, what job they have, 
 >* Start communication with one another
->* Communicate with the server until all data was sent/received
+>* Communicate with the server and ask for permission to continue until all data was sent/received
