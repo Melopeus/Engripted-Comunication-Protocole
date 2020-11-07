@@ -48,14 +48,13 @@ class CFB:
     def _encrypt(b_text):
         if type(b_text) is str:
             b_text = b_text.encode('utf-8')
-
         b_text = CFB.pad(b_text)
         nr_blocks = len(b_text)//16
         cipherText = b''
         encripted_iv = None
         if CFB.lastBlock != None:
-            encripted_iv = CFB.lastBlock               # this is needed in case the function is called on chunks of plaintext repeatedly
-        else:
+            encripted_iv = CFB.lastBlock    # this is needed in case the plaintext is split in 8*16 chunks, and the function called on all the them
+        else:                               # when we encrypt from the second on, the algorithm uses the correct IV(the last encrypted cipherTextBlock) not the original one
             encripted_iv = CFB.e_cipher.encrypt(CFB.iv)
 
         for i in range(nr_blocks):
@@ -71,8 +70,8 @@ class CFB:
         plainText = b''
         encripted_iv = None
         if CFB.lastBlock != None:
-            encripted_iv = CFB.lastBlock    # this is needed in case the function is called on chunks of plaintext repeatedly
-        else:
+            encripted_iv = CFB.lastBlock    # this is needed in case the crypertext is split in 8*16 chunks, and the function called on all the them
+        else:                               # when we decrypt from the second on, the algorithm uses the correct IV(the last encrypted cipherTextBlock) not the original one
             encripted_iv = CFB.e_cipher.encrypt(CFB.iv)
         for i in range(nr_blocks): # iterate through all 16 bytes long blocks of cryptotext
             cipherTextBloc = b_text[16*i:16*(i+1)]
