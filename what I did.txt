@@ -1,0 +1,9 @@
+python 3.8.3
+
+Daca aveti eroare de tipul: "Can't find module Crypto"
+pip uninstall crypto
+pip uninstall pycryptodome
+pip install pycryptodome
+
+
+https://pycryptodome.readthedocs.io/en/latest/src/cipher/aes.html
